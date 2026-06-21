@@ -7,67 +7,96 @@
     <link rel="stylesheet" href="Cash-flow.css" />
   </head>
   <body>
-    <h2>Cash-Flow</h2>
-    <div class="container">
-      <h4>Remaining Balance</h4>
-      <h1 id="balance">₹0.00</h1>
-      <div class="inc-exp-container">
-        <div>
-          <h4>Salary</h4>
-          <p id="money-plus" class="money-plus">+₹0.00</p>
-        </div>
-        <div>
-          <h4>Total Expense</h4>
-          <p id="money-minus" class="money-minus">-₹0.00</p>
-        </div>
-      </div>
+    <h1>Cash-Flow</h1>
 
+    <div class="app-layout">
+      <div class="container">
+        <h4>Remaining Balance</h4>
+
+        <div class="currency-box">
+          <span class="currency-label">💱 Currency</span>
+          <select id="currency-select">
+            <option value="INR">🇮🇳 INR</option>
+            <option value="USD">🇺🇸 USD</option>
+            <option value="EUR">🇪🇺 EUR</option>
+            <option value="GBP">🇬🇧 GBP</option>
+          </select>
+        </div>
+
+        <h1 id="balance">₹0.00</h1>
+
+        <div id="warning-banner" class="warning-banner">
+          ⚠ Warning: Remaining balance is below 10% of your salary!
+        </div>
+
+        <div class="inc-exp-container">
+          <div>
+            <h4>Salary</h4>
+            <p id="money-plus" class="money-plus">+₹0.00</p>
+          </div>
+          <div>
+            <h4>Total Expense</h4>
+            <p id="money-minus" class="money-minus">-₹0.00</p>
+          </div>
+        </div>
+
+        <!-- Salary Form moved -->
+        <form id="salary-form">
+          <div class="salary-form-control">
+            <label>Total Salary</label>
+            <input
+              type="number"
+              id="salary-input"
+              required
+              placeholder="Enter Salary"
+            />
+            <button class="btn">Set Salary</button>
+          </div>
+        </form>
+
+        <!-- Expense Add form -->
+        <h3>Add New Expense</h3>
+        <form id="form">
+          <div class="form-control">
+            <label for="text">Expense Name</label>
+            <input type="text" id="text" placeholder="Enter Expense Name...." />
+          </div>
+          <div class="form-control">
+            <label for="amount">
+              Expense Amount <br />
+              <small style="font-weight: normal; color: #64748b"
+                >(negative = expense, positive = income)</small
+              >
+            </label>
+            <input
+              type="number"
+              id="amount"
+              placeholder="Enter Expense amount..."
+            />
+          </div>
+          <button class="btn">Add Expense</button>
+        </form>
+      </div>
       <div class="chart-container">
+        <!-- Chart -->
         <canvas id="expenseChart"></canvas>
+
+        <!-- Expense History -->
+        <h3>Expense History</h3>
+        <ul id="list" class="list"></ul>
+
+        <!-- Download Button -->
+        <button id="download-report-btn" class="download-btn">
+          📄 Download Report
+        </button>
       </div>
-
-      <h3>History</h3>
-      <ul id="list" class="list"></ul>
-
-      <!--Salary Form-->
-      <form id="salary-form">
-        <div class="salary-form-control">
-          <label>Total Salary</label>
-          <input
-            type="number"
-            id="salary-input"
-            required
-            placeholder="Enter Salary"
-          />
-          <button class="btn">Set Salary</button>
-        </div>
-      </form>
-
-      <!--Expense Add form-->
-      <h3>Add New Expense</h3>
-      <form id="form">
-        <!--Expense Name Add text-->
-        <div class="form-control">
-          <label for="text">Expense Name</label>
-          <input type="text" id="text" placeholder="Enter Expense Name...." />
-        </div>
-        <!--Expense Amount Add text-->
-        <div class="form-control">
-          <label for="amount"
-            >Expense Amount <br />
-            (negative - expense ,positive - income )</label
-          >
-          <input
-            type="number"
-            id="amount"
-            placeholder="Enter Expense amount..."
-          />
-        </div>
-        <!--New Expense Add button-->
-        <button class="btn">Add Expense</button>
-      </form>
     </div>
+
+    <!-- Pdf Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Chart Library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom Script -->
     <script src="Cash-flow.js"></script>
   </body>
 </html>
